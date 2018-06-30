@@ -127,6 +127,12 @@ def test_payments(c):
     expect(c, 'PUT', '/v1/payments/1234', json={'status': 'cancelled'})
     c.payments.cancel('1234')
 
+    expect(c, 'POST', '/v1/payments/1234/refunds')
+    c.payments.refund(1234)
+
+    expect(c, 'POST', '/v1/payments/1234/refunds', json={'amount': 10.5})
+    c.payments.partial_refund(1234, amount=10.5)
+
 
 def test_plans(c):
     c.force_authenticate()

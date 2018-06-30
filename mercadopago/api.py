@@ -77,6 +77,12 @@ class PaymentAPI(RetrievableAPIResource, CreatableAPIResource,
     def cancel(self, id):
         return self.update(id, status='cancelled')
 
+    def refund(self, id):
+        return self._client.post('/{id}/refunds', {'id': id})
+
+    def partial_refund(self, id, amount):
+        return self._client.post('/{id}/refunds', {'id': id}, json={'amount': amount})
+
 
 class PlanAPI(RetrievableAPIResource, CreatableAPIResource,
               UpdatableAPIResource):
