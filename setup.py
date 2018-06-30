@@ -16,7 +16,8 @@ setup(
     long_description=read('README.rst'),
     author="Federico Bond",
     author_email="federicobond@gmail.com",
-    url="https://github.com/federicobond/mercadopago-redux",
+    url="https://github.com/federicobond/pymercadopago",
+    license='Apache 2.0',
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
     install_requires=[
