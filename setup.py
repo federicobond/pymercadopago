@@ -14,6 +14,7 @@ setup(
     version="0.1.2",
     description="An API wrapper for MercadoPago",
     long_description=read('README.rst'),
+    long_description_content_type='text/x-rst',
     author="Federico Bond",
     author_email="federicobond@gmail.com",
     url="https://github.com/federicobond/pymercadopago",
