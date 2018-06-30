@@ -1,5 +1,9 @@
 PyMercadoPago
-=================
+=============
+
+.. image:: https://travis-ci.org/federicobond/pymercadopago.svg?branch=master
+   :target: https://travis-ci.org/federicobond/pymercadopago
+
 
 PyMercadoPago is user-friendly API library to interact with MercadoPago.
 
