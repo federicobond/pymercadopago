@@ -208,6 +208,9 @@ def test_users(c):
     expect(c, 'GET', '/users/1234/mercadopago_account/balance')
     c.users.account_balance()
 
+    expect(c, 'POST', '/users/test_user', json={'site_id': 'MLA'})
+    c.users.test_user_create('MLA')
+
 
 def test_bank_reports(c):
     c.force_authenticate()

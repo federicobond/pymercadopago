@@ -141,6 +141,9 @@ class UsersAPI(API):
             'user_id': user_id
         })
 
+    def test_user_create(self, site_id):
+        return self._client.post('/test_user', json={'site_id': site_id})
+
 
 class BankReportAPI(ListableAPIResource):
     _base_path = '/v1/account/bank_report'
