@@ -7,6 +7,9 @@ class API(object):
     def __init__(self, client, path_args={}):
         self._client = client.for_base_path(self._base_path, path_args)
 
+    def __repr__(self):
+        return '<{} at {}>'.format(self.__class__.__name__, self._base_path)
+
 
 class RetrievableAPIResource(API):
 

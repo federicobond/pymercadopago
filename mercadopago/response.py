@@ -9,7 +9,7 @@ except ImportError:
 
 
 class Response(object):
-    """This is the main class for all responses returned by the library.
+    """A responses returned by the API""
 
     Args:
         url: The URL that was requested
@@ -24,8 +24,14 @@ class Response(object):
         self.status_code = response.status_code
         self.data = response.json()
 
+    def __repr__(self):
+        path = urlparse(self.url).path
+        return '<{} {}[{}]>'.format(
+            self.__class__.__name__, path, self.status_code)
+
 
 class PaginatedResponse(Response):
+    """A paginated response returned by the API"""
 
     @property
     def results(self):
