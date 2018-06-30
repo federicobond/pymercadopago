@@ -11,7 +11,9 @@ PyMercadoPago
 
 PyMercadoPago is user-friendly library to interact with the MercadoPago API.
 
-To install from PyPI::
+It's compatible with Python 2 and 3.
+
+To install it from PyPI, simply run::
 
     pip install pymercadopago
 
@@ -118,10 +120,27 @@ according to the HTTP status code returned:
 :401: ``mercadopago.errors.AuthorizationError``
 :404: ``mercadopago.errors.NotFoundError``
 
+
+Running the tests
+-----------------
+
+Make sure tests pass before contributing a bugfix or a new feature.
+To run the test suite, execute this in your terminal:
+
+::
+
+    python setup.py test
+
+
+This will execute the tests with your default Python interpreter.
+Use ``tox`` to run the tests in all supported Python versions.
+
+
 ----------
 
 For more information about the API, refer to the `official docs 
 <https://www.mercadopago.com.ar/developers/en/api-docs/>`_.
+
 
 Author
 ------
