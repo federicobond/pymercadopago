@@ -36,6 +36,6 @@ setup(
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.6',
-    ]
-
+    ],
+    keywords='mercadopago api'
 )
