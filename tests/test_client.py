@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 import pytest
 
-from mercadopago import Client
+from mercadopago import Client, errors
 from .util import SpyClient, expect
 
 
@@ -52,3 +52,31 @@ def test_http_verbs(c):
 
     expect(c, 'DELETE', '/payments')
     c.delete('/payments')
+
+
+def test_error_handling(c):
+    c.force_authenticate()
+
+    res = expect(c, 'GET', '/payments')
+    res.status_code = 400
+
+    with pytest.raises(errors.BadRequestError):
+        c.get('/payments')
+
+    res = expect(c, 'GET', '/payments')
+    res.status_code = 401
+
+    with pytest.raises(errors.AuthenticationError):
+        c.get('/payments')
+
+    res = expect(c, 'GET', '/payments')
+    res.status_code = 404
+
+    with pytest.raises(errors.NotFoundError):
+        c.get('/payments')
+
+    res = expect(c, 'GET', '/payments')
+    res.status_code = 500
+
+    with pytest.raises(errors.Error):
+        c.get('/payments')

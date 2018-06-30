@@ -18,8 +18,8 @@ class BaseClient(object):
         try:
             res = self._session.request(method, url, **kwargs)
             res.raise_for_status()
-        except (requests.ConnectionError, requests.HTTPError) as cause:
-            raise errors.Error(cause)
+        except (requests.ConnectionError, requests.HTTPError) as error:
+            self._handle_request_error(error)
 
         try:
             data = res.json()

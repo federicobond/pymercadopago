@@ -1,9 +1,15 @@
 from __future__ import unicode_literals
+
+import requests
+
 from mercadopago import Client
 
 
-class MockHTTPError(Exception):
-    pass
+class MockHTTPError(requests.HTTPError):
+
+    def __init__(self, response):
+        super(MockHTTPError, self).__init__()
+        self.response = response
 
 
 class MockResponse(dict):
@@ -23,7 +29,7 @@ class MockResponse(dict):
 
     def raise_for_status(self):
         if self.status_code >= 400:
-            raise MockHTTPError()
+            raise MockHTTPError(self)
 
     def json(self):
         return self.data
