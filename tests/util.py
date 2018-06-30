@@ -16,7 +16,7 @@ class MockResponse(dict):
             self[key] = value
 
     def __getattr__(self, value):
-        return self[value]
+        return self.get(value)
 
     def __setattr__(self, key, value):
         self[key] = value
