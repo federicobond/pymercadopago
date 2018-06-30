@@ -1,9 +1,14 @@
 #!/usr/bin/env python
 
 import os
+import re
 
 from codecs import open
 from setuptools import find_packages, setup
+
+
+with open('mercadopago/__init__.py', 'r', encoding='utf-8') as f:
+    version = re.search(r'__version__ = \'(.*?)\'', f.read()).group(1)
 
 
 def read(fname):
@@ -14,7 +19,7 @@ def read(fname):
 
 setup(
     name="pymercadopago",
-    version="0.1.3",
+    version=version,
     description="An API wrapper for MercadoPago",
     long_description=read('README.rst'),
     long_description_content_type='text/x-rst',

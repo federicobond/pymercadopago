@@ -8,10 +8,4 @@ from .errors import (
     BadRequestError
 )
 
-__all__ = [
-    'Client',
-    'Error',
-    'AuthenticationError',
-    'NotFoundError',
-    'BadRequestError'
-]
+__version__ = '0.1.3'

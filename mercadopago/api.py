@@ -176,6 +176,11 @@ class AccountAPI(API):
 class Client(BaseClient):
     base_url = 'https://api.mercadopago.com'
 
+    def __init__(self, *args, **kwargs):
+        super(Client, self).__init__(*args, **kwargs)
+        from . import __version__
+        self._session.headers['User-Agent'] = 'PyMercadoPago/%s' % __version__
+
     def is_authenticated(self):
         return bool(self._auth)
 
