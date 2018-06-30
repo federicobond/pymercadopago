@@ -17,7 +17,7 @@ setup(
     author="Federico Bond",
     author_email="federicobond@gmail.com",
     url="https://github.com/federicobond/mercadopago-redux",
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests']),
     include_package_data=True,
     install_requires=[
         "requests>=2.19.1",
