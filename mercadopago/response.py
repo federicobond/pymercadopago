@@ -52,14 +52,14 @@ class PaginatedResponse(Response):
     def has_next(self):
         return self.offset + self.limit < self.total
 
-    def has_previous(self):
+    def has_prev(self):
         return self.offset > 0
 
     def next(self):
         offset = min(self.offset + self.limit, self.total)
         return self._request_with_params(offset=offset)
 
-    def previous(self):
+    def prev(self):
         offset = max(0, self.offset - self.limit)
         return self._request_with_params(offset=offset)
 

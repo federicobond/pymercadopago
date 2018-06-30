@@ -58,10 +58,10 @@ def test_paginated_response_paging(c, res):
     assert response.offset == 0
 
 
-def test_response_has_next_previous(c, res):
+def test_response_has_next_prev(c, res):
     response = PaginatedResponse(c, res)
     assert response.has_next() is True
-    assert response.has_previous() is False
+    assert response.has_prev() is False
 
 
 def test_response_is_first_page(c, res):
@@ -70,7 +70,7 @@ def test_response_is_first_page(c, res):
 
     response = PaginatedResponse(c, res)
     assert response.has_next() is True
-    assert response.has_previous() is False
+    assert response.has_prev() is False
 
 
 def test_response_is_last_page(c, res):
@@ -80,7 +80,7 @@ def test_response_is_last_page(c, res):
 
     response = PaginatedResponse(c, res)
     assert response.has_next() is False
-    assert response.has_previous() is True
+    assert response.has_prev() is True
 
 
 def test_response_next(c, res):
@@ -92,14 +92,14 @@ def test_response_next(c, res):
     response.next()
 
 
-def test_response_previous(c, res):
+def test_response_prev(c, res):
     res.data['paging']['total'] = 100
     res.data['paging']['offset'] = 20
 
     response = PaginatedResponse(c, res)
 
     expect(c, 'GET', '/v1/payments/search', params={'offset': 10})
-    response.previous()
+    response.prev()
 
 
 def test_paginated_response_is_iterable(c, res):
