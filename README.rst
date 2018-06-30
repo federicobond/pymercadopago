@@ -1,11 +1,15 @@
 PyMercadoPago
 =============
 
+.. image:: https://img.shields.io/pypi/v/pymercadopago.svg
+   :target: https://pypi.python.org/pypi/pymercadopago
+   :alt: Latest Version
+
 .. image:: https://travis-ci.org/federicobond/pymercadopago.svg?branch=master
    :target: https://travis-ci.org/federicobond/pymercadopago
 
 
-PyMercadoPago is user-friendly API library to interact with MercadoPago.
+PyMercadoPago is user-friendly library to interact with the MercadoPago API.
 
 To install from PyPI::
 
