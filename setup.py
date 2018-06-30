@@ -11,7 +11,7 @@ def read(fname):
 
 setup(
     name="pymercadopago",
-    version="0.1.2",
+    version="0.1.3",
     description="An API wrapper for MercadoPago",
     long_description=read('README.rst'),
     long_description_content_type='text/x-rst',
