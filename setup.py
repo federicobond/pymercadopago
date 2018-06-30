@@ -2,11 +2,14 @@
 
 import os
 
+from codecs import open
 from setuptools import find_packages, setup
 
 
 def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+    path = os.path.join(os.path.dirname(__file__), fname)
+    with open(path, 'r', 'utf-8') as f:
+        return f.read()
 
 
 setup(
