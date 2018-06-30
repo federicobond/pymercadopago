@@ -181,6 +181,13 @@ def test_preapprovals(c):
     c.preapprovals.search(foo='bar')
 
 
+def test_shipping_options(c):
+    c.force_authenticate()
+
+    expect(c, 'GET', '/shipping_options', params={'foo': 'bar'})
+    c.shipping_options.get(foo='bar')
+
+
 def test_users(c):
     c.force_authenticate()
 

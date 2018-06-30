@@ -114,6 +114,13 @@ class PreapprovalAPI(CreatableAPIResource, UpdatableAPIResource,
         return self.update(id, status='paused')
 
 
+class ShippingOptionAPI(API):
+    _base_path = '/shipping_options'
+
+    def get(self, **data):
+        return self._client.get(params=data)
+
+
 class UsersAPI(API):
     _base_path = '/users'
 
@@ -253,6 +260,10 @@ class Client(BaseClient):
     @property
     def preferences(self):
         return PreferenceAPI(self)
+
+    @property
+    def shipping_options(self):
+        return ShippingOptionAPI(self)
 
     @property
     def account(self):
