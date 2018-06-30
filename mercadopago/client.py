@@ -9,7 +9,7 @@ from . import errors, response
 class BaseClient(object):
     base_url = None
 
-    def __init__(self, client_id=None, client_secret=None):
+    def __init__(self, client_id, client_secret):
         self.client_id = client_id
         self.client_secret = client_secret
         self._session = requests.Session()

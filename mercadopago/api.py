@@ -52,7 +52,8 @@ class IdentificationTypeAPI(ListableAPIResource):
 
 
 class InvoiceAPI(RetrievableAPIResource):
-    _base_path = '/merchant_orders'
+    # TODO: check if this one goes with v1 or not
+    _base_path = '/v1/invoices'
 
 
 class MerchantOrderAPI(RetrievableAPIResource, CreatableAPIResource,
@@ -102,7 +103,7 @@ class PreapprovalAPI(CreatableAPIResource, UpdatableAPIResource,
         if not res.data['results']:
             raise errors.NotFoundError('could not find preapproval with ID = %s' % id)
 
-        res = Response(res._response)  # pylint: disable=protected-access
+        res = Response(self._client.client, res._response)  # pylint: disable=protected-access
         res.data = res.data['results'][0]
 
         return res
@@ -133,7 +134,7 @@ class BankReportAPI(ListableAPIResource):
     _base_path = '/v1/account/bank_report'
 
     def get(self, file_name):
-        return self._client.get('/{file_name}', {'file_name', file_name})
+        return self._client.get('/{file_name}', {'file_name': file_name})
 
     def create(self, **data):
         return self._client.post(json=data)
@@ -143,19 +144,19 @@ class SettlementReportAPI(SearchableAPIResource):
     _base_path = '/v1/account/settlement_report'
 
     def get(self, file_name):
-        return self._client.get('/{file_name}', {'file_name', file_name})
+        return self._client.get('/{file_name}', {'file_name': file_name})
 
-    def config_new(self, data):
+    def config_new(self, **data):
         return self._client.post('/config', json=data)
 
-    def config_update(self, data):
+    def config_update(self, **data):
         return self._client.put('/config', json=data)
 
     def config_get(self):
         return self._client.get('/config')
 
-    def schedule(self):
-        return self._client.post('/schedule')
+    def schedule_set(self, **data):
+        return self._client.post('/schedule', json=data)
 
     def schedule_delete(self):
         return self._client.delete('/schedule')
@@ -208,10 +209,6 @@ class Client(BaseClient):
         url = self.base_url + path.format(**path_args)
 
         return self._request(method, url, **kwargs)
-
-    @property
-    def cards(self):
-        return CardAPI(self)
 
     @property
     def card_tokens(self):
