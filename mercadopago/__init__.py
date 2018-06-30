@@ -10,7 +10,7 @@ from .errors import (
 
 __all__ = [
     'Client',
-    'Errors',
+    'Error',
     'AuthenticationError',
     'NotFoundError',
     'BadRequestError'

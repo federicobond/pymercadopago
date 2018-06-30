@@ -1,0 +1,10 @@
+[MASTER]
+good-names=id,me
+
+[MESSAGES CONTROL]
+disable=
+  missing-docstring,
+  redefined-builtin,
+  too-few-public-methods,
+  no-self-use,
+  dangerous-default-value

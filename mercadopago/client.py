@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-from collections import ChainMap
 
 import requests
 
@@ -75,7 +74,10 @@ class ClientProxy(object):
         return ClientProxy(self.client, base_path, path_args)
 
     def _merge_path_args(self, path_args):
-        return ChainMap(path_args, self.path_args)
+        args = {}
+        args.update(**self.path_args)
+        args.update(**path_args)
+        return args
 
     def get(self, path='', path_args={}, **kwargs):
         return self.client.get(

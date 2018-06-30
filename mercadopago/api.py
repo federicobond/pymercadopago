@@ -52,7 +52,6 @@ class IdentificationTypeAPI(ListableAPIResource):
 
 
 class InvoiceAPI(RetrievableAPIResource):
-    # TODO: check if this one goes with v1 or not
     _base_path = '/v1/invoices'
 
 
