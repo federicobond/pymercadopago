@@ -2,12 +2,25 @@ from __future__ import unicode_literals
 
 import pytest
 
+from mercadopago import errors
 from .util import SpyClient, expect
 
 
 @pytest.fixture
 def c():
     return SpyClient('XXX', 'XXX')
+
+
+def test_authentication_error(c):
+    res = expect(c, 'POST', '/oauth/token', data={
+        'client_id': 'XXX',
+        'client_secret': 'XXX',
+        'grant_type': 'client_credentials'
+    })
+    res.status_code = 400
+
+    with pytest.raises(errors.BadRequestError):
+        c.authenticate()
 
 
 def test_card_tokens_get(c):
@@ -170,6 +183,12 @@ def test_preapprovals(c):
     res = expect(c, 'GET', '/preapproval/search', params={'id': '1234'})
     res.data = {'paging': {}, 'results': [{'id': '1234'}]}
     c.preapprovals.get('1234')
+
+    # test not found for .get explicitly since this is a convenience method
+    res = expect(c, 'GET', '/preapproval/search', params={'id': '1234'})
+    res.data = {'paging': {}, 'results': []}
+    with pytest.raises(errors.NotFoundError):
+        c.preapprovals.get('1234')
 
     expect(c, 'POST', '/preapproval', json={'foo': 'bar'})
     c.preapprovals.create(foo='bar')
