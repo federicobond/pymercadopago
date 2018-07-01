@@ -95,23 +95,26 @@ resource paths. For example:
   mp.customers.cards(id).list()
 
 
-All methods return a ``mercadopago.response.Response`` object if successful
-(HTTP status code in the 2XX range) or raise a ``mercadopago.Error`` or
-one of its subclasses otherwise.
+All methods return a ``Response`` object if successful (HTTP status code in the
+2XX range) or raise an instance of ``mercadopago.Error`` otherwise.
 
 Response
 --------
 
-Attributes
-    :url The requested URL.
-    :status_code: The HTTP status_code returned by the API.
-    :data: The JSON response returned by the API, as a standard Python dict/list.
+Every API call you make will return a ``Response`` instance with the following
+attributes:
 
+===============  ==============================================
+Attribute        Description
+===============  ==============================================
+``status_code``  The HTTP status_code returned by the API.
+``data``         The decoded JSON response returned by the API.
+``url``          The requested URL.
+===============  ==============================================
 
 If MercadoPago returns a response with pagination information, a
-``mercadopago.response.PaginatedResponse`` will be returned instead.
-
-Paginated responses have the following additional methods:
+``PaginatedResponse`` will be returned instead. Paginated responses have the
+following additional methods:
 
 ``response.total``
     Total amount of records in this collection.
