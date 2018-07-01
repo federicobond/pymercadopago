@@ -187,6 +187,16 @@ def test_preapprovals(c):
     c.preapprovals.search(foo='bar')
 
 
+def test_money_requests(c):
+    c.force_authenticate()
+
+    expect(c, 'GET', '/money_requests/1234')
+    c.money_requests.get(1234)
+
+    expect(c, 'POST', '/money_requests', json={'foo': 'bar'})
+    c.money_requests.create(foo='bar')
+
+
 def test_shipping_options(c):
     c.force_authenticate()
 

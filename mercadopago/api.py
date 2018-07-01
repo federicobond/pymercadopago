@@ -94,6 +94,10 @@ class PreferenceAPI(RetrievableAPIResource, CreatableAPIResource,
     _base_path = '/v1/preferences'
 
 
+class MoneyRequestAPI(RetrievableAPIResource, CreatableAPIResource):
+    _base_path = '/money_requests'
+
+
 class PreapprovalAPI(CreatableAPIResource, UpdatableAPIResource,
                      SearchableAPIResource):
     _base_path = '/preapproval'
@@ -269,6 +273,10 @@ class Client(BaseClient):
     @property
     def preferences(self):
         return PreferenceAPI(self)
+
+    @property
+    def money_requests(self):
+        return MoneyRequestAPI(self)
 
     @property
     def shipping_options(self):
