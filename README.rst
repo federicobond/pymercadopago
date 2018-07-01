@@ -159,12 +159,14 @@ Attribute        Description
 
 The specific subclass raised depends on the HTTP status code.
 
-=== ==================================
-400 ``mercadopago.BadRequestError``
-401 ``mercadopago.AuthorizationError``
-404 ``mercadopago.NotFoundError``
-*   ``mercadopago.Error``
-=== ==================================
+====== ==================================
+Status Class
+====== ==================================
+400    ``mercadopago.BadRequestError``
+401    ``mercadopago.AuthorizationError``
+404    ``mercadopago.NotFoundError``
+\*     ``mercadopago.Error``
+====== ==================================
 
 
 Running the tests
