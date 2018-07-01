@@ -76,7 +76,7 @@ you can do:
     Delete a Customer.
 
 ``mp.customers.update(**data)``
-    Update a Customer, include ``ìd`` in your keword arguments.
+    Update a Customer, include ``ìd`` in your keyword arguments.
 
 ``mp.customers.search(**params)``
     Search for customers matching params.
