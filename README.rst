@@ -187,8 +187,8 @@ Use ``tox`` to run the tests in all supported Python versions.
 To Do
 -----
 
- * Implement idempotency headers in POST/PUT requests.
- * Implement retry request from error.
+* Implement idempotency headers in POST/PUT requests.
+* Implement retry request from error.
 
 
 ----------
