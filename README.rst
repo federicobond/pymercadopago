@@ -81,15 +81,22 @@ you can do:
 ``mp.customers.search(**params)``
     Search for customers matching params.
 
-Not all methods are available for all resources, and some additional methods
-are provided for convenience. To learn more, check out the official docs and
-the code from the ``mercadopago.api`` module.
+Not all methods are available for all resources, and some additional
+convenience methods have been added to some. To learn more, check out the
+official docs and/or the code from the ``mercadopago.api`` module.
 
-Nested resources like ``/v1/customers/:id/cards`` are usually accessed by
-following the resource paths: ``mp.customers.cards(id).list()``
+Nested resources like are usually accessed by following the corresponding
+resource paths. For example:
+
+::
+
+  # GET /v1/customers/:id/cards
+  # ----
+  mp.customers.cards(id).list()
+
 
 All methods return a ``mercadopago.response.Response`` object if successful
-(HTTP status code in the 2XX range) or raise a ``mercadopago.errors.Error`` or
+(HTTP status code in the 2XX range) or raise a ``mercadopago.Error`` or
 one of its subclasses otherwise.
 
 Response
@@ -104,21 +111,60 @@ Attributes
 If MercadoPago returns a response with pagination information, a
 ``mercadopago.response.PaginatedResponse`` will be returned instead.
 
+Paginated responses have the following additional methods:
+
+``response.total``
+    Total amount of records in this collection.
+
+``response.limit``
+    Maximum number of records for this page.
+
+``response.offset``
+    Number of records skipped to reach this page.
+
+``response.results``
+    List of records in this request. This is different from ``.data`` which
+    contains the full body of the response, with the pagination info.
+
+``response.has_prev()``
+    Whether there are any preceding pages.
+
+``response.has_next()``
+    Whether there are any following pages.
+
+``response.prev()``
+    Requests the previous page and returns a ``PaginatedResponse``.
+
+``response.next()``
+    Requests the next page and returns a ``PaginatedResponse``.
+
+``response.auto_paging_iter()``
+    Returns a generator of records that will automatically request new pages
+    when necessary.
+
+
 Error
 -----
 
-Attributes
-    :http_status: The HTTP status_code returned by the API, if applicable.
-    :code: The error code returned by the API, if applicable.
-    :json_data: The full JSON response returned by the API, if applicable.
+If there is a connection error or the HTTP response contains a non-2XX status
+code, the method will raise an instance of ``mercadopago.Error``.
 
+===============  ==========================================================
+Attribute        Description
+===============  ==========================================================
+``http_status``  The HTTP status_code returned by the API, if applicable.
+``code``         The error code returned by the API, if applicable.
+``json_data``    The full JSON response returned by the API, if applicable.
+===============  ==========================================================
 
-The library will raise specific subclasses of ``mercadopago.errors.Error``
-according to the HTTP status code returned:
+The specific subclass raised depends on the HTTP status code.
 
-:400: ``mercadopago.errors.BadRequestError``
-:401: ``mercadopago.errors.AuthorizationError``
-:404: ``mercadopago.errors.NotFoundError``
+=== ==================================
+400 ``mercadopago.BadRequestError``
+401 ``mercadopago.AuthorizationError``
+404 ``mercadopago.NotFoundError``
+*   ``mercadopago.Error``
+=== ==================================
 
 
 Running the tests
@@ -134,6 +180,13 @@ To run the test suite, execute this in your terminal:
 
 This will execute the tests with your default Python interpreter.
 Use ``tox`` to run the tests in all supported Python versions.
+
+
+To Do
+-----
+
+ * Implement idempotency headers in POST/PUT requests.
+ * Implement retry request from error.
 
 
 ----------
