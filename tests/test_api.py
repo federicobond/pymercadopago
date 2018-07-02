@@ -163,17 +163,17 @@ def test_plans(c):
 def test_preferences(c):
     c.force_authenticate()
 
-    expect(c, 'GET', '/v1/preferences/1234')
+    expect(c, 'GET', '/checkout/preferences/1234')
     c.preferences.get('1234')
 
-    expect(c, 'POST', '/v1/preferences', json={'foo': 'bar'})
+    expect(c, 'POST', '/checkout/preferences', json={'foo': 'bar'})
     c.preferences.create(foo='bar')
 
-    expect(c, 'PUT', '/v1/preferences/1234', json={'foo': 'bar'})
+    expect(c, 'PUT', '/checkout/preferences/1234', json={'foo': 'bar'})
     c.preferences.update(id='1234', foo='bar')
 
     # TODO: check if there is no search for preferences
-    expect(c, 'GET', '/v1/preferences')
+    expect(c, 'GET', '/checkout/preferences')
     c.preferences.list()
 
 

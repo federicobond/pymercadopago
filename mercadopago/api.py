@@ -91,7 +91,7 @@ class PlanAPI(RetrievableAPIResource, CreatableAPIResource,
 
 class PreferenceAPI(RetrievableAPIResource, CreatableAPIResource,
                     UpdatableAPIResource, ListableAPIResource):
-    _base_path = '/v1/preferences'
+    _base_path = '/checkout/preferences'
 
 
 class MoneyRequestAPI(RetrievableAPIResource, CreatableAPIResource):
