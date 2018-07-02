@@ -193,6 +193,10 @@ class AccountAPI(API):
         return SettlementReportAPI(self._client)
 
 
+class SiteAPI(ListableAPIResource):
+    _base_path = '/sites'
+
+
 class Client(BaseClient):
     base_url = 'https://api.mercadopago.com'
 
@@ -289,3 +293,7 @@ class Client(BaseClient):
     @property
     def users(self):
         return UsersAPI(self)
+
+    @property
+    def sites(self):
+        return SiteAPI(self)

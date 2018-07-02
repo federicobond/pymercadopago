@@ -274,3 +274,10 @@ def test_settlement_report(c):
 
     expect(c, 'DELETE', '/v1/account/settlement_report/schedule')
     c.account.settlement_report.schedule_delete()
+
+
+def test_sites(c):
+    c.force_authenticate()  # should not be required
+
+    expect(c, 'GET', '/sites')
+    c.sites.list()
