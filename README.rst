@@ -11,7 +11,7 @@ PyMercadoPago
 
 PyMercadoPago is user-friendly library to interact with the MercadoPago API.
 
-It's compatible with Python 2 and 3.
+It's compatible with both Python 2 and 3.
 
 To install it from PyPI, simply run::
 
@@ -25,9 +25,7 @@ Quickstart
 
 Create a new ``mercadopago.Client`` instance and pass it your credentials:
 
-.. highlight:: python
-
-::
+.. code-block:: python
 
     import mercadopago
 
@@ -40,19 +38,19 @@ Create a new ``mercadopago.Client`` instance and pass it your credentials:
 You can navigate the full API from the client methods. Try running the above
 code in a Python shell and explore them.
 
-::
+.. code-block:: python
 
     # Get the invoice with ID 1234
     mp.invoices.get('1234')
 
 
-::
+.. code-block:: python
 
     # Get the current user account balance
     mp.users.account_balance()
 
 
-::
+.. code-block:: python
 
     # Create a new customer instance
     mp.customers.create(
@@ -88,7 +86,7 @@ official docs and/or the code from the ``mercadopago.api`` module.
 Nested resources like are usually accessed by following the corresponding
 resource paths. For example:
 
-::
+.. code-block:: python
 
   # GET /v1/customers/:id/cards
   # ----
@@ -176,9 +174,7 @@ Running the tests
 -----------------
 
 Make sure tests pass before contributing a bugfix or a new feature.
-To run the test suite, execute this in your terminal:
-
-::
+To run the test suite, execute this in your terminal::
 
     python setup.py test
 
