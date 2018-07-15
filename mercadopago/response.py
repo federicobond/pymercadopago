@@ -80,6 +80,6 @@ class PaginatedResponse(Response):
             yield result
 
         while req.has_next():
-            req = req.next()
+            req = req.next()  # pylint: disable=stop-iteration-return
             for result in req:
                 yield result
