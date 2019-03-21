@@ -147,6 +147,13 @@ def test_payments(c):
     c.payments.partial_refund(1234, amount=10.5)
 
 
+def test_chargebacks(c):
+    c.force_authenticate()
+
+    expect(c, 'GET', '/v1/chargebacks/1234')
+    c.chargebacks.get('1234')
+
+
 def test_plans(c):
     c.force_authenticate()
 

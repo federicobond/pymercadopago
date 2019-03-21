@@ -84,6 +84,10 @@ class PaymentAPI(RetrievableAPIResource, CreatableAPIResource,
         return self._client.post('/{id}/refunds', {'id': id}, json={'amount': amount})
 
 
+class ChargebackAPI(RetrievableAPIResource):
+    _base_path = '/v1/chargebacks'
+
+
 class PlanAPI(RetrievableAPIResource, CreatableAPIResource,
               UpdatableAPIResource):
     _base_path = '/v1/plans'
@@ -265,6 +269,10 @@ class Client(BaseClient):
     @property
     def payments(self):
         return PaymentAPI(self)
+
+    @property
+    def chargebacks(self):
+        return ChargebackAPI(self)
 
     @property
     def plans(self):
