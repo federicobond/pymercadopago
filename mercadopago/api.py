@@ -84,6 +84,35 @@ class PaymentAPI(RetrievableAPIResource, CreatableAPIResource,
         return self._client.post('/{id}/refunds', {'id': id}, json={'amount': amount})
 
 
+class AdvancedPaymentAPI(RetrievableAPIResource, CreatableAPIResource,
+                          UpdatableAPIResource, SearchableAPIResource):
+
+    _base_path = '/v1/advanced_payments'
+
+    def refund(self, id):
+        return self._client.post('/{id}/refunds', {'id': id})
+
+    def disburses(self, id, **data):
+        return self._client.post('/{id}/disburses', {'id': id}, json=data)
+
+    def disbursements(self, id):
+        return DisbursementAPI(self._client, id)
+
+
+class DisbursementAPI(API):
+    _base_path = '/v1/advanced_payments/{payment_id}/disbursements'
+
+    def __init__(self, client, payment_id):
+        super(DisbursementAPI, self).__init__(
+            client, path_args={'payment_id': payment_id})
+
+    def refunds(self, id, **data):
+        return self._client.post('/{disbursement_id}/refunds', {'disbursement_id': id}, json=data)
+
+    def disburses(self, id, **data):
+        return self._client.post('/{disbursement_id}/disburses', {'disbursement_id': id}, json=data)
+
+
 class ChargebackAPI(RetrievableAPIResource):
     _base_path = '/v1/chargebacks'
 
@@ -269,6 +298,10 @@ class Client(BaseClient):
     @property
     def payments(self):
         return PaymentAPI(self)
+
+    @property
+    def advanced_payments(self):
+        return AdvancedPaymentAPI(self)
 
     @property
     def chargebacks(self):

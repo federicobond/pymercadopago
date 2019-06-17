@@ -147,6 +147,34 @@ def test_payments(c):
     c.payments.partial_refund(1234, amount=10.5)
 
 
+def test_payments(c):
+    c.force_authenticate()
+
+    expect(c, 'GET', '/v1/advanced_payments/1234')
+    c.advanced_payments.get('1234')
+
+    expect(c, 'POST', '/v1/advanced_payments', json={'foo': 'bar'})
+    c.advanced_payments.create(foo='bar')
+
+    expect(c, 'PUT', '/v1/advanced_payments/1234', json={'foo': 'bar'})
+    c.advanced_payments.update(id='1234', foo='bar')
+
+    expect(c, 'GET', '/v1/advanced_payments/search', params={'foo': 'bar'})
+    c.advanced_payments.search(foo='bar')
+
+    expect(c, 'POST', '/v1/advanced_payments/1234/refunds')
+    c.advanced_payments.refund(1234)
+
+    expect(c, 'POST', '/v1/advanced_payments/1234/disburses', json={'amount': 10.5})
+    c.advanced_payments.disburses(1234, amount=10.5)
+
+    expect(c, 'POST', '/v1/advanced_payments/1234/disbursements/5678/refunds', json={'amount': 10.5})
+    c.advanced_payments.disbursements(1234).refunds(5678, amount=10.5)
+
+    expect(c, 'POST', '/v1/advanced_payments/1234/disbursements/5678/disburses', json={'foo': 'bar'})
+    c.advanced_payments.disbursements(1234).disburses(5678, foo='bar')
+
+
 def test_chargebacks(c):
     c.force_authenticate()
 
