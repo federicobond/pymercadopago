@@ -193,7 +193,7 @@ To Do
 ----------
 
 For more information about the API, refer to the `official docs 
-<https://www.mercadopago.com.ar/developers/en/api-docs/>`_.
+<https://www.mercadopago.com.ar/developers/en/reference/>`_.
 
 
 Author
