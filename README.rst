@@ -148,7 +148,8 @@ Error
 -----
 
 If there is a connection error or the HTTP response contains a non-2XX status
-code, the method will raise an instance of ``mercadopago.Error``.
+code, the method will raise an instance of ``mercadopago.Error``. The error
+object contains the following attributes:
 
 ===============  ==========================================================
 Attribute        Description
