@@ -9,9 +9,7 @@ PyMercadoPago
    :target: https://travis-ci.org/federicobond/pymercadopago
 
 
-PyMercadoPago is user-friendly library to interact with the MercadoPago API.
-
-It's compatible with both Python 2 and 3.
+PyMercadoPago is user-friendly library to interact with the MercadoPago API. Python 3 only.
 
 To install it from PyPI, simply run::
 
