@@ -5,7 +5,7 @@ import requests
 from . import errors, response
 
 
-class BaseClient(object):
+class BaseClient:
     base_url = None
 
     def __init__(self, client_id, client_secret):
@@ -63,7 +63,7 @@ class BaseClient(object):
         return ClientProxy(self, base_path, path_args)
 
 
-class ClientProxy(object):
+class ClientProxy:
 
     def __init__(self, client, base_path, path_args={}):
         self.client = client

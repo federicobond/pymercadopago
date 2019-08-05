@@ -8,7 +8,7 @@ except ImportError:
     from urlparse import urlparse, parse_qs
 
 
-class Response(object):
+class Response:
     """A responses returned by the API""
 
     Args:

@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 
-class API(object):
+class API:
     _base_path = None
 
     def __init__(self, client, path_args={}):

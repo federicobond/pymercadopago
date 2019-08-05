@@ -6,7 +6,7 @@ class Error(Exception):
 
     def __init__(self, cause_or_message):
         if isinstance(cause_or_message, str):
-            super(Error, self).__init__(cause_or_message)
+            super().__init__(cause_or_message)
             return
 
         cause = cause_or_message
@@ -27,7 +27,7 @@ class Error(Exception):
         else:
             message = str(cause)
 
-        super(Error, self).__init__(message)
+        super().__init__(message)
 
 
 class AuthenticationError(Error):

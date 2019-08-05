@@ -21,8 +21,7 @@ class CardAPI(ListableAPIResource, RetrievableAPIResource, CreatableAPIResource,
     _base_path = '/v1/customers/{customer_id}/cards'
 
     def __init__(self, client, customer_id):
-        super(CardAPI, self).__init__(
-            client, path_args={'customer_id': customer_id})
+        super().__init__(client, path_args={'customer_id': customer_id})
 
 
 class CardTokenAPI(API):
@@ -103,8 +102,7 @@ class DisbursementAPI(API):
     _base_path = '/v1/advanced_payments/{payment_id}/disbursements'
 
     def __init__(self, client, payment_id):
-        super(DisbursementAPI, self).__init__(
-            client, path_args={'payment_id': payment_id})
+        super().__init__(client, path_args={'payment_id': payment_id})
 
     def refunds(self, id, **data):
         return self._client.post('/{disbursement_id}/refunds', {'disbursement_id': id}, json=data)
@@ -234,7 +232,7 @@ class Client(BaseClient):
     base_url = 'https://api.mercadopago.com'
 
     def __init__(self, *args, **kwargs):
-        super(Client, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         from . import __version__
         self._session.headers['User-Agent'] = 'PyMercadoPago/%s' % __version__
 

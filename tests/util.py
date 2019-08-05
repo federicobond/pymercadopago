@@ -8,7 +8,7 @@ from mercadopago import Client
 class MockHTTPError(requests.HTTPError):
 
     def __init__(self, response):
-        super(MockHTTPError, self).__init__()
+        super().__init__()
         self.response = response
 
 
@@ -35,7 +35,7 @@ class MockResponse(dict):
         return self.data
 
 
-class SpySession(object):
+class SpySession:
 
     def __init__(self):
         self.expected = []
@@ -75,7 +75,7 @@ class SpySession(object):
 class SpyClient(Client):
 
     def __init__(self, *args, **kwargs):
-        super(SpyClient, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self._session = SpySession()
 
     def force_authenticate(self):
