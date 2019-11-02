@@ -162,6 +162,11 @@ class ShippingOptionAPI(API):
         return self._client.get(params=data)
 
 
+class PosAPI(RetrievableAPIResource, CreatableAPIResource,
+             UpdatableAPIResource, DeletableAPIResource, ListableAPIResource):
+    _base_path = '/pos'
+
+
 class UsersAPI(API):
     _base_path = '/users'
 
@@ -324,6 +329,10 @@ class Client(BaseClient):
     @property
     def shipping_options(self):
         return ShippingOptionAPI(self)
+
+    @property
+    def pos(self):
+        return PosAPI(self)
 
     @property
     def account(self):

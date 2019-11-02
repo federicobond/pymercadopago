@@ -258,6 +258,25 @@ def test_shipping_options(c):
     c.shipping_options.get(foo='bar')
 
 
+def test_pos(c):
+    c.force_authenticate()
+
+    expect(c, 'GET', '/pos', params={'foo': 'bar'})
+    c.pos.list(foo='bar')
+
+    expect(c, 'POST', '/pos', json={'foo': 'bar'})
+    c.pos.create(foo='bar')
+
+    expect(c, 'GET', '/pos/1234')
+    c.pos.get(id='1234')
+
+    expect(c, 'PUT', '/pos/1234', json={'foo': 'bar'})
+    c.pos.update(id='1234', foo='bar')
+
+    expect(c, 'DELETE', '/pos/1234')
+    c.pos.delete(id='1234')
+
+
 def test_users(c):
     c.force_authenticate()
 
