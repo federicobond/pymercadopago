@@ -1,3 +1,7 @@
+### 0.3.0
+
+ * Add support for PoS API
+
 ### 0.2.0
 
  * Add support for advanced payments API
