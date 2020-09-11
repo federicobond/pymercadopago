@@ -1,3 +1,8 @@
+### 0.4.0
+
+ * Add support for stores API
+ * Improve support for bank reports API
+
 ### 0.3.0
 
  * Add support for PoS API
