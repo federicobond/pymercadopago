@@ -1,6 +1,3 @@
-from __future__ import unicode_literals
-
-
 class API:
     _base_path = None
 
