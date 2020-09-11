@@ -299,13 +299,25 @@ def test_bank_reports(c):
     c.force_authenticate()
 
     expect(c, 'GET', '/v1/account/bank_report')
-    c.account.bank_report.list()
+    c.account.bank_report.search()
 
     expect(c, 'GET', '/v1/account/bank_report/1234')
     c.account.bank_report.get('1234')
 
     expect(c, 'POST', '/v1/account/bank_report', json={'foo': 'bar'})
     c.account.bank_report.create(foo='bar')
+
+    expect(c, 'POST', '/v1/account/bank_report/config', json={'foo': 'bar'})
+    c.account.bank_report.config_new(foo='bar')
+
+    expect(c, 'PUT', '/v1/account/bank_report/config', json={'foo': 'bar'})
+    c.account.bank_report.config_update(foo='bar')
+
+    expect(c, 'POST', '/v1/account/bank_report/schedule', json={'foo': 'bar'})
+    c.account.bank_report.schedule_set(foo='bar')
+
+    expect(c, 'DELETE', '/v1/account/bank_report/schedule')
+    c.account.bank_report.schedule_delete()
 
 
 def test_settlement_report(c):

@@ -185,14 +185,29 @@ class UsersAPI(API):
         return self._client.post('/test_user', json={'site_id': site_id})
 
 
-class BankReportAPI(ListableAPIResource):
+class BankReportAPI(API):
     _base_path = '/v1/account/bank_report'
 
     def get(self, file_name):
         return self._client.get('/{file_name}', {'file_name': file_name})
 
+    def search(self, **params):
+        return self._client.get(params=params)
+
     def create(self, **data):
         return self._client.post(json=data)
+
+    def config_new(self, **data):
+        return self._client.post('/config', json=data)
+
+    def config_update(self, **data):
+        return self._client.put('/config', json=data)
+
+    def schedule_set(self, **data):
+        return self._client.post('/schedule', json=data)
+
+    def schedule_delete(self):
+        return self._client.delete('/schedule')
 
 
 class SettlementReportAPI(SearchableAPIResource):
