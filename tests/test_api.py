@@ -147,7 +147,7 @@ def test_payments(c):
     c.payments.partial_refund(1234, amount=10.5)
 
 
-def test_payments(c):
+def test_advanced_payments(c):
     c.force_authenticate()
 
     expect(c, 'GET', '/v1/advanced_payments/1234')
