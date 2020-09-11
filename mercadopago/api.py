@@ -98,6 +98,25 @@ class AdvancedPaymentAPI(RetrievableAPIResource, CreatableAPIResource,
         return DisbursementAPI(self._client, id)
 
 
+class StoreAPI(RetrievableAPIResource):
+    _base_path = ''
+
+    def get(self, id):
+        return self._client.get('/stores/{id}', {'id': id})
+
+    def create(self, user_id, **data):
+        return self._client.post('/users/{user_id}/stores', {'user_id': user_id}, json=data)
+
+    def search(self, user_id, **data):
+        return self._client.get('/users/{user_id}/stores/search', {'user_id': user_id}, params=data)
+
+    def update(self, user_id, id, **data):
+        return self._client.put('/users/{user_id}/stores/{id}', {'user_id': user_id, 'id': id}, json=data)
+
+    def delete(self, user_id, id):
+        return self._client.delete('/users/{user_id}/stores/{id}', {'user_id': user_id, 'id': id})
+
+
 class DisbursementAPI(API):
     _base_path = '/v1/advanced_payments/{payment_id}/disbursements'
 
@@ -320,6 +339,10 @@ class Client(BaseClient):
     @property
     def advanced_payments(self):
         return AdvancedPaymentAPI(self)
+
+    @property
+    def stores(self):
+        return StoreAPI(self)
 
     @property
     def chargebacks(self):

@@ -175,6 +175,22 @@ def test_payments(c):
     c.advanced_payments.disbursements(1234).disburses(5678, foo='bar')
 
 
+def test_stores(c):
+    c.force_authenticate()
+
+    expect(c, 'GET', '/stores/1234')
+    c.stores.get('1234')
+
+    expect(c, 'POST', '/users/12345678/stores', json={'foo': 'bar'})
+    c.stores.create(user_id='12345678', foo='bar')
+
+    expect(c, 'PUT', '/users/12345678/stores/1234', json={'foo': 'bar'})
+    c.stores.update(user_id='12345678', id='1234', foo='bar')
+
+    expect(c, 'DELETE', '/users/12345678/stores/1234')
+    c.stores.delete(user_id='12345678', id='1234')
+
+
 def test_chargebacks(c):
     c.force_authenticate()
 
